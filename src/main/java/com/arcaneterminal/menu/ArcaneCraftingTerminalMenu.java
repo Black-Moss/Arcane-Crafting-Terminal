@@ -17,6 +17,8 @@ import com.leclowndu93150.thaumaturge.content.workbench.WorkbenchCraftingStore;
 import com.tom.storagemod.menu.StorageTerminalMenu;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -33,6 +35,7 @@ import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.storage.ValueInput;
 import net.neoforged.neoforge.transfer.transaction.RootCommitJournal;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
@@ -53,6 +56,8 @@ public class ArcaneCraftingTerminalMenu extends StorageTerminalMenu {
     public static final int PLAYER_END = PLAYER_START + 36;
     public static final int CLEAR_GRID_BUTTON = 0;
     public static final int TOGGLE_MODE_BUTTON = 1;
+    /** Message key carrying the id of a recipe to lay out in the grid. */
+    public static final String FILL_RECIPE_KEY = "arcane_terminal_fill";
 
     private static final int AURA_REFRESH_INTERVAL = 10;
     private static final int AURA_DATA_SLOT = 0;
@@ -325,6 +330,17 @@ public class ArcaneCraftingTerminalMenu extends StorageTerminalMenu {
     public void removed(Player player) {
         super.removed(player);
         inventory.removeChangedListener(changeListener);
+    }
+
+    /** Fills the grid for a recipe the client picked in JEI; see {@link #FILL_RECIPE_KEY}. */
+    @Override
+    public void receive(ValueInput message) {
+        super.receive(message);
+        if (!craftsOnServer() || serverPlayer.isSpectator()) {
+            return;
+        }
+        message.getString(FILL_RECIPE_KEY).map(Identifier::tryParse).ifPresent(id -> serverLevel.getServer().getRecipeManager().byKey(ResourceKey.create(Registries.RECIPE, id))
+                .ifPresent(holder -> new TerminalRecipeFiller(terminal, serverPlayer).place(holder.value())));
     }
 
     @Override
