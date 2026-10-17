@@ -1,0 +1,26 @@
+# Gradle / build output
+.gradle/
+build/
+out/
+
+# Dev runs
+run/
+run-server/
+*.log
+*_log.txt
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+bin/
+
+# Reference sources and archives (Thaumaturge, Tom's Storage) used while developing
+ref/
+*.zip
+
+# Local Thaumaturge jar built from source for compiling and testing
+libs/

@@ -1,0 +1,42 @@
+{
+  "category": "thaumaturge:basics",
+  "name": "research.arcane_terminal.arcane_crafting_terminal.title",
+  "parents": [
+    "thaumaturge:first_steps"
+  ],
+  "column": 1,
+  "row": 1,
+  "icons": [
+    "arcane_terminal:arcane_crafting_terminal"
+  ],
+  "stages": [
+    {
+      "text": "research.arcane_terminal.arcane_crafting_terminal.stage_0",
+      "required_knowledge": [
+        {
+          "type": "observation",
+          "category": "thaumaturge:basics",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "text": "research.arcane_terminal.arcane_crafting_terminal.stage_1"
+    }
+  ],
+  "note_aspects": [
+    {
+      "aspect": "thaumaturge:praecantatio",
+      "amount": 3
+    },
+    {
+      "aspect": "thaumaturge:fabrico",
+      "amount": 3
+    },
+    {
+      "aspect": "thaumaturge:vacuos",
+      "amount": 2
+    }
+  ],
+  "complexity": 1
+}

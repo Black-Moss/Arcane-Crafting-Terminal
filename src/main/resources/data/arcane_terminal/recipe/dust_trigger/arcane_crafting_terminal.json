@@ -1,0 +1,10 @@
+{
+  "type": "thaumaturge:dust_trigger_simple",
+  "target": "toms_storage:crafting_terminal",
+  "result": {
+    "id": "arcane_terminal:arcane_crafting_terminal"
+  },
+  "research": {
+    "entry": "arcane_terminal:arcane_crafting_terminal"
+  }
+}

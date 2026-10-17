@@ -1,0 +1,48 @@
+{
+  "values": {
+    "arcane_terminal:arcane_crafting_terminal": [
+      {
+        "aspect": "thaumaturge:fabrico",
+        "amount": 20
+      },
+      {
+        "aspect": "thaumaturge:praecantatio",
+        "amount": 8
+      },
+      {
+        "aspect": "thaumaturge:vacuos",
+        "amount": 8
+      },
+      {
+        "aspect": "thaumaturge:auram",
+        "amount": 5
+      },
+      {
+        "aspect": "thaumaturge:cognitio",
+        "amount": 3
+      }
+    ],
+    "toms_storage:adv_wireless_terminal": [
+      {
+        "aspect": "thaumaturge:metallum",
+        "amount": 12
+      },
+      {
+        "aspect": "thaumaturge:vacuos",
+        "amount": 8
+      },
+      {
+        "aspect": "thaumaturge:sensus",
+        "amount": 5
+      },
+      {
+        "aspect": "thaumaturge:potentia",
+        "amount": 5
+      },
+      {
+        "aspect": "thaumaturge:ignis",
+        "amount": 3
+      }
+    ]
+  }
+}

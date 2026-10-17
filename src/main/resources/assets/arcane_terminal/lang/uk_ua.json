@@ -1,0 +1,29 @@
+{
+  "block.arcane_terminal.arcane_crafting_terminal": "Арканний термінал крафту",
+  "menu.arcane_terminal.arcane_crafting_terminal": "А. термінал",
+  "tooltip.arcane_terminal.arcane_crafting_terminal": "Дає доступ до ваших предметів.\\Розмістіть його на сховищі.\\Має вбудований арканний верстак.\\Заряджач верстака на з'єднувачі сховища\\мережі бере vis із сусідніх чанків.",
+  "tooltip.arcane_terminal.clear_grid": "Повернути сітку крафту до сховища",
+  "tooltip.arcane_terminal.mode_arcane": "Вигляд: арканний верстак\nНатисніть, щоб перемкнути на вигляд термінала крафту",
+  "tooltip.arcane_terminal.mode_crafting": "Вигляд: термінал крафту\nНатисніть, щоб перемкнути на вигляд арканного верстака",
+  "narrator.arcane_terminal.mode": "Перемкнути вигляд",
+
+  "gui.arcane_terminal.vis_available": "доступно: %s",
+  "gui.arcane_terminal.required_vis": "%s vis",
+  "gui.arcane_terminal.required_vis_discount": "%s vis (знижка %s%%)",
+  "gui.arcane_terminal.required_vis_crude": "%s vis (нефокусований)",
+  "gui.arcane_terminal.vis_available.tooltip.title": "Vis аури",
+  "gui.arcane_terminal.vis_available.tooltip": "Vis в аурі навколо цього термінала. Крафт забирає з неї вартість у vis",
+  "gui.arcane_terminal.vis_available.tooltip.short": "Тут недостатньо vis для цього крафту",
+  "gui.arcane_terminal.charger.tooltip": "Поставте заряджач верстака на з'єднувач сховища мережі, щоб брати vis із чанків навколо нього",
+  "gui.arcane_terminal.required_vis.tooltip.title": "Вартість у vis",
+  "gui.arcane_terminal.required_vis.tooltip": "Забирається з аури, коли ви берете створений предмет",
+  "gui.arcane_terminal.required_vis_discount.tooltip": "На %s%% дешевше завдяки наконечникам жезла та спорядженню зі знижкою на vis",
+  "gui.arcane_terminal.required_vis_crude.tooltip": "Нефокусований: первинну вартість оплачують кристали, тому вартість у vis зростає на %s%%. Жезл із достатнім запасом первинного vis у слоті для жезла фокусує крафт",
+  "gui.arcane_terminal.crystal_needed.tooltip": "Потрібен кристал vis, або %s vis цього первинного елемента з жезла в слоті для жезла",
+  "gui.arcane_terminal.wand_pay.tooltip.title": "Vis жезла",
+  "gui.arcane_terminal.wand_pay.tooltip": "Первинний vis, який жезл надасть замість кристалів (%s за кристал)",
+
+  "research.arcane_terminal.arcane_crafting_terminal.title": "Арканний термінал крафту",
+  "research.arcane_terminal.arcane_crafting_terminal.stage_0": "Перед кожним арканним крафтом діставати всі інгредієнти зі скринь — втомлива справа. Цікаво, чи зміг би верстак сягати просто у ваше сховище, як це роблять ті кмітливі термінали крафту.",
+  "research.arcane_terminal.arcane_crafting_terminal.stage_1": "Посипте термінал крафту Salis Mundus, і він стане арканним терміналом крафту. Він зберігає з'єднання зі сховищем і отримує все, що має арканний верстак: сітку крафту, слот для кожного первинного кристала та слот для жезла. Інгредієнти, витрачені на крафт, поповнюються зі сховища.<BR>Кнопка збоку термінала перемикає між виглядом арканного верстака та звичайним виглядом термінала крафту. Ваші кристали й жезл лишаються на місці, навіть коли приховані.<BR>Vis для арканних крафтів береться з аури навколо термінала. Поставте заряджач верстака на з'єднувач сховища мережі, і кожен арканний термінал крафту в цій мережі братиме vis із чанків 3x3 навколо з'єднувача.<BR>Прив'яжіть до нього покращений бездротовий термінал, щоб користуватися арканним верстаком на відстані."
+}

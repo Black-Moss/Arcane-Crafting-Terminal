@@ -1,0 +1,122 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = "arcane_terminal-${minecraft_version}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+
+repositories {
+    maven {
+        name = 'Leclown'
+        url = 'https://maven.leclowndu93150.dev/releases'
+        content { includeGroup 'com.leclowndu93150' }
+    }
+    maven {
+        name = 'IllusiveSoulworks'
+        url = 'https://maven.theillusivec4.top/'
+        content { includeGroup 'top.theillusivec4.curios' }
+    }
+    maven {
+        name = 'BlameJared'
+        url = 'https://maven.blamejared.com/'
+        content { includeGroup 'mezz.jei' }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Modrinth'
+                url = 'https://api.modrinth.com/maven'
+            }
+        }
+        filter { includeGroup 'maven.modrinth' }
+    }
+}
+
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+            gameDirectory = project.file('run')
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        server {
+            server()
+            gameDirectory = project.file('run-server')
+            programArgument '--nogui'
+        }
+        configureEach {
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+// A Thaumaturge jar built from the user's source takes priority over the published release.
+def localThaumaturge = fileTree(dir: 'libs', include: 'thaumaturge*.jar')
+
+dependencies {
+    if (!localThaumaturge.isEmpty()) {
+        compileOnly localThaumaturge
+        runtimeOnly localThaumaturge
+    } else {
+        compileOnly("com.leclowndu93150:thaumaturge-26.1.2-neoforge:${thaumaturge_version}") { transitive = false }
+        runtimeOnly("com.leclowndu93150:thaumaturge-26.1.2-neoforge:${thaumaturge_version}") { transitive = false }
+    }
+
+    implementation "maven.modrinth:toms-storage:${toms_storage_version}"
+
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+
+    // Thaumaturge's required dependencies, only needed to launch the game in dev.
+    runtimeOnly "maven.modrinth:XaDC71GB:${lithostitched_version}"
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+}
+
+var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
+    var replaceProperties = [
+            minecraft_version            : minecraft_version,
+            minecraft_version_range      : minecraft_version_range,
+            neo_version                  : neo_version,
+            neo_version_range            : neo_version_range,
+            loader_version_range         : loader_version_range,
+            mod_id                       : mod_id,
+            mod_name                     : mod_name,
+            mod_license                  : mod_license,
+            mod_version                  : mod_version,
+            mod_authors                  : mod_authors,
+            mod_description              : mod_description,
+            thaumaturge_version_range    : thaumaturge_version_range,
+            toms_storage_version_range   : toms_storage_version_range,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from 'src/main/templates'
+    into 'build/generated/sources/modMetadata'
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(ProcessResources).configureEach {
+    filteringCharset = 'UTF-8'
+}

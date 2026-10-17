@@ -1,0 +1,6 @@
+{
+  "parent": "toms_storage:block/crafting_terminal",
+  "textures": {
+    "2": "arcane_terminal:block/arcane_crafting_terminal_front"
+  }
+}
