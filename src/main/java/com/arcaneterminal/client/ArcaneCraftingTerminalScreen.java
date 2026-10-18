@@ -3,6 +3,7 @@ package com.arcaneterminal.client;
 import com.arcaneterminal.ArcaneTerminal;
 import com.arcaneterminal.menu.ArcaneCraftingTerminalMenu;
 import com.arcaneterminal.menu.TerminalLayout;
+import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectInstance;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.recipe.IArcaneRecipe;
@@ -39,8 +40,8 @@ import org.jspecify.annotations.Nullable;
 public class ArcaneCraftingTerminalScreen extends AbstractStorageTerminalScreen<ArcaneCraftingTerminalMenu> {
     private static final Identifier STORAGE_TEXTURE = ArcaneTerminal.id("textures/gui/arcane_crafting_terminal.png");
     private static final Identifier CRAFTING_TEXTURE = Identifier.fromNamespaceAndPath("toms_storage", "textures/gui/crafting_terminal.png");
-    private static final Identifier ARCANE_TEXTURE = Identifier.fromNamespaceAndPath("thaumaturge", "textures/gui/arcane_workbench.png");
-    private static final Identifier WAND_SLOT_TEXTURE = Identifier.fromNamespaceAndPath("thaumaturge", "textures/gui/workbench_wand_slot.png");
+    private static final Identifier ARCANE_TEXTURE = TTIds.rl("textures/gui/arcane_workbench.png");
+    private static final Identifier WAND_SLOT_TEXTURE = TTIds.rl("textures/gui/workbench_wand_slot.png");
     private static final Identifier FLOATING_SLOT = Identifier.fromNamespaceAndPath("toms_storage", "widget/floating_slot");
     private static final int TEX_SIZE = 256;
 
@@ -125,7 +126,9 @@ public class ArcaneCraftingTerminalScreen extends AbstractStorageTerminalScreen<
     }
 
     private void clickButton(int id) {
-        minecraft.gameMode.handleInventoryButtonClick(menu.containerId, id);
+        if (minecraft.gameMode != null) {
+            minecraft.gameMode.handleInventoryButtonClick(menu.containerId, id);
+        }
     }
 
     @Override

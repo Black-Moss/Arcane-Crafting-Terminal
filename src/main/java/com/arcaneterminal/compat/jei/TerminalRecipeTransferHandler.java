@@ -22,6 +22,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -95,12 +96,18 @@ public final class TerminalRecipeTransferHandler<R extends RecipeHolder<?>> impl
     /** Shows which ingredients could not be found, but still lets the transfer go ahead. */
     private record Warning(IRecipeTransferError parent) implements IRecipeTransferError {
         @Override
-        public Type getType() {
+        public @NonNull Type getType() {
             return Type.COSMETIC;
         }
 
         @Override
-        public void showError(GuiGraphicsExtractor graphics, int mouseX, int mouseY, IRecipeSlotsView recipeSlotsView, int recipeX, int recipeY) {
+        public void showError(
+                @NonNull GuiGraphicsExtractor graphics,
+                int mouseX,
+                int mouseY,
+                @NonNull IRecipeSlotsView recipeSlotsView,
+                int recipeX,
+                int recipeY) {
             parent.showError(graphics, mouseX, mouseY, recipeSlotsView, recipeX, recipeY);
         }
     }
