@@ -42,23 +42,29 @@ public final class TerminalRecipeTransferHandler<R extends RecipeHolder<?>> impl
     }
 
     @Override
-    public Class<? extends ArcaneCraftingTerminalMenu> getContainerClass() {
+    public @NonNull Class<? extends ArcaneCraftingTerminalMenu> getContainerClass() {
         return ArcaneCraftingTerminalMenu.class;
     }
 
     @Override
-    public Optional<MenuType<ArcaneCraftingTerminalMenu>> getMenuType() {
+    public @NonNull Optional<MenuType<ArcaneCraftingTerminalMenu>> getMenuType() {
         return Optional.of(ATRegistry.ARCANE_CRAFTING_TERMINAL_MENU.get());
     }
 
     @Override
-    public IRecipeType<R> getRecipeType() {
+    public @NonNull IRecipeType<R> getRecipeType() {
         return recipeType;
     }
 
     @SuppressWarnings("removal")
     @Override
-    public @Nullable IRecipeTransferError transferRecipe(ArcaneCraftingTerminalMenu menu, R recipe, IRecipeSlotsView recipeSlots, Player player, boolean maxTransfer, boolean doTransfer) {
+    public @Nullable IRecipeTransferError transferRecipe(
+            @NonNull ArcaneCraftingTerminalMenu menu,
+            @NonNull R recipe,
+            IRecipeSlotsView recipeSlots,
+            @NonNull Player player,
+            boolean maxTransfer,
+            boolean doTransfer) {
         List<ItemStack> available = availableStacks(menu, player);
         List<IRecipeSlotView> missing = new ArrayList<>();
         for (IRecipeSlotView view : recipeSlots.getSlotViews(RecipeIngredientRole.INPUT)) {
