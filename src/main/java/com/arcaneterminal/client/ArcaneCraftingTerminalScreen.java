@@ -191,7 +191,7 @@ public class ArcaneCraftingTerminalScreen extends AbstractStorageTerminalScreen<
             drawCrystalGlows(graphics, plan, player, partialTick, shift);
         }
         boolean visShort = available < required;
-        Component availableLine = Component.translatable("gui.arcane_terminal.vis_available", available);
+        Component availableLine = Component.translatable("gui.thaumaturge.arcane_workbench.vis_available", available);
         drawHalfText(graphics, availableLine, VIS_TEXT_X, VIS_AVAILABLE_Y + shift, visShort ? VIS_SHORT_COLOR : VIS_ENOUGH_COLOR);
         if (isOverHalfText(availableLine, VIS_TEXT_X, VIS_AVAILABLE_Y + shift, 0, mouseX, mouseY)) {
             graphics.setComponentTooltipForNextFrame(font, visAvailableTooltip(visShort), mouseX, mouseY);
@@ -252,7 +252,7 @@ public class ArcaneCraftingTerminalScreen extends AbstractStorageTerminalScreen<
             if (!crystal.isEmpty()) {
                 lines.add(crystal.getHoverName());
             }
-            lines.add(Component.translatable("gui.arcane_terminal.crystal_needed.tooltip", WandEconomy.CRYSTAL_SUBSTITUTE_VIS).withStyle(ChatFormatting.GRAY));
+            lines.add(Component.translatable("gui.thaumaturge.arcane_workbench.crystal_needed.tooltip", WandEconomy.CRYSTAL_SUBSTITUTE_VIS).withStyle(ChatFormatting.GRAY));
             graphics.setComponentTooltipForNextFrame(font, lines, mouseX, mouseY);
             return;
         }
@@ -265,11 +265,11 @@ public class ArcaneCraftingTerminalScreen extends AbstractStorageTerminalScreen<
 
     private List<Component> visAvailableTooltip(boolean insufficient) {
         List<Component> lines = new ArrayList<>();
-        lines.add(Component.translatable("gui.arcane_terminal.vis_available.tooltip.title").withStyle(ChatFormatting.AQUA));
+        lines.add(Component.translatable("gui.thaumaturge.arcane_workbench.vis_available.tooltip.title").withStyle(ChatFormatting.AQUA));
         lines.add(Component.translatable("gui.arcane_terminal.vis_available.tooltip").withStyle(ChatFormatting.GRAY));
         lines.add(Component.translatable("gui.arcane_terminal.charger.tooltip").withStyle(ChatFormatting.DARK_PURPLE));
         if (insufficient) {
-            lines.add(Component.translatable("gui.arcane_terminal.vis_available.tooltip.short").withStyle(ChatFormatting.RED));
+            lines.add(Component.translatable("gui.thaumaturge.arcane_workbench.vis_available.tooltip.short").withStyle(ChatFormatting.RED));
         }
         return lines;
     }
@@ -278,21 +278,21 @@ public class ArcaneCraftingTerminalScreen extends AbstractStorageTerminalScreen<
         int vis = plan.auraVis();
         int discount = discountPercent(recipe, plan);
         if (discount > 0) {
-            return Component.translatable("gui.arcane_terminal.required_vis_discount", vis, discount);
+            return Component.translatable("gui.thaumaturge.arcane_workbench.required_vis_discount", vis, discount);
         }
-        return plan.crystalsToConsume().isEmpty() ? Component.translatable("gui.arcane_terminal.required_vis", vis) : Component.translatable("gui.arcane_terminal.required_vis_crude", vis);
+        return plan.crystalsToConsume().isEmpty() ? Component.translatable("gui.thaumaturge.arcane_workbench.required_vis", vis) : Component.translatable("gui.thaumaturge.arcane_workbench.required_vis_crude", vis);
     }
 
     private static List<Component> costTooltip(IArcaneRecipe recipe, WorkbenchPayment.Plan plan) {
         List<Component> lines = new ArrayList<>();
-        lines.add(Component.translatable("gui.arcane_terminal.required_vis.tooltip.title").withStyle(ChatFormatting.AQUA));
-        lines.add(Component.translatable("gui.arcane_terminal.required_vis.tooltip").withStyle(ChatFormatting.GRAY));
+        lines.add(Component.translatable("gui.thaumaturge.arcane_workbench.required_vis.tooltip.title").withStyle(ChatFormatting.AQUA));
+        lines.add(Component.translatable("gui.thaumaturge.arcane_workbench.required_vis.tooltip").withStyle(ChatFormatting.GRAY));
         int discount = discountPercent(recipe, plan);
         if (discount > 0) {
-            lines.add(Component.translatable("gui.arcane_terminal.required_vis_discount.tooltip", discount).withStyle(ChatFormatting.GREEN));
+            lines.add(Component.translatable("gui.thaumaturge.arcane_workbench.required_vis_discount.tooltip", discount).withStyle(ChatFormatting.GREEN));
         } else if (!plan.crystalsToConsume().isEmpty()) {
             int surcharge = Math.round((WandEconomy.CRAFT_AURA_SURCHARGE - 1.0F) * PERCENT);
-            lines.add(Component.translatable("gui.arcane_terminal.required_vis_crude.tooltip", surcharge).withStyle(ChatFormatting.GOLD));
+            lines.add(Component.translatable("gui.thaumaturge.arcane_workbench.required_vis_crude.tooltip", surcharge).withStyle(ChatFormatting.GOLD));
         }
         return lines;
     }
@@ -319,8 +319,8 @@ public class ArcaneCraftingTerminalScreen extends AbstractStorageTerminalScreen<
         int centreX = TerminalLayout.WAND_X + SLOT_SIZE / 2;
         drawHalfText(graphics, line, centreX, WAND_COST_Y + shift, WAND_COST_COLOR);
         if (isOverHalfText(line, centreX, WAND_COST_Y + shift, WAND_COST_HOVER_MIN_HALF_WIDTH, mouseX, mouseY)) {
-            List<Component> tooltip = List.of(Component.translatable("gui.arcane_terminal.wand_pay.tooltip.title").withStyle(ChatFormatting.AQUA),
-                    Component.translatable("gui.arcane_terminal.wand_pay.tooltip", WandEconomy.CRYSTAL_SUBSTITUTE_VIS).withStyle(ChatFormatting.GRAY));
+            List<Component> tooltip = List.of(Component.translatable("gui.thaumaturge.arcane_workbench.wand_pay.tooltip.title").withStyle(ChatFormatting.AQUA),
+                    Component.translatable("gui.thaumaturge.arcane_workbench.wand_pay.tooltip", WandEconomy.CRYSTAL_SUBSTITUTE_VIS).withStyle(ChatFormatting.GRAY));
             graphics.setComponentTooltipForNextFrame(font, tooltip, mouseX, mouseY);
         }
     }
